@@ -3,6 +3,7 @@ import 'package:hackernews/models/ask.dart';
 import 'package:hackernews/models/comments.dart';
 import 'package:hackernews/models/job.dart';
 import 'package:hackernews/models/poll.dart';
+import 'package:hackernews/models/pollopt.dart';
 import 'package:hackernews/models/story.dart';
 import 'package:hackernews/services/app_enums.dart';
 
@@ -55,6 +56,8 @@ extension MapExtension on Map {
         return Job.fromMap(this).toWidget();
       case Poll.type:
         return Poll.fromMap(this).toWidget();
+      case PollOpt.type:
+        return PollOpt.fromMap(this).toWidget();
       default:
         return Container();
     }

@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
-import 'package:hackernews/models/ask.dart';
-import 'package:hackernews/models/comments.dart';
-import 'package:hackernews/models/job.dart';
-import 'package:hackernews/models/poll.dart';
-import 'package:hackernews/models/story.dart';
 import 'package:hackernews/screens/homepage/controllers/update_controller.dart';
 import 'package:hackernews/screens/user/user_screen.dart';
 import 'package:hackernews/services/app_extensions.dart';

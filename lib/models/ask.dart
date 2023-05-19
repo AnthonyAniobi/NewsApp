@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackernews/screens/ask/ask_screen.dart';
+import 'package:hackernews/screens/ask/controllers/ask_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -32,7 +34,6 @@ class Ask {
 
 class _ItemTile extends StatelessWidget {
   const _ItemTile({
-    super.key,
     required this.ask,
   });
 
@@ -49,61 +50,69 @@ class _ItemTile extends StatelessWidget {
             blurRadius: 4,
           )
         ]),
-        child: Row(
-          children: [
-            Container(
-              height: double.maxFinite,
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Color.fromRGBO(0, 0, 0, 1), Colors.blue],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter)),
-              child: Icon(
-                Icons.support_agent,
-                color: Colors.white,
-                size: 16.w,
-              ),
-            ),
-            SizedBox(width: 1.w),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(1.5.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    Text(
-                      ask.title.capitalize!,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 18.sp, fontWeight: FontWeight.w700),
-                    ),
-                    SizedBox(width: 2.w),
-                    Text(
-                      ask.text,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 16.sp, fontWeight: FontWeight.w400),
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          DateFormat('dd-MMMM-yyyy').format(ask.exactTime),
-                          style: TextStyle(fontSize: 14.sp, color: Colors.blue),
-                        ),
-                      ],
-                    )
-                  ],
+        child: InkWell(
+          onTap: () {
+            Get.lazyPut(() => AskController());
+            Get.find<AskController>().loadMore(ask);
+            Get.to(() => AskScreen(ask: ask));
+          },
+          child: Row(
+            children: [
+              Container(
+                height: double.maxFinite,
+                padding: EdgeInsets.symmetric(horizontal: 4.w),
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Color.fromRGBO(0, 0, 0, 1), Colors.blue],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter)),
+                child: Icon(
+                  Icons.support_agent,
+                  color: Colors.white,
+                  size: 16.w,
                 ),
               ),
-            ),
-          ],
+              SizedBox(width: 1.w),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(1.5.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      Text(
+                        ask.title.capitalize!,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 18.sp, fontWeight: FontWeight.w700),
+                      ),
+                      SizedBox(width: 2.w),
+                      Text(
+                        ask.text,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontWeight: FontWeight.w400),
+                      ),
+                      const Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            DateFormat('dd-MMMM-yyyy').format(ask.exactTime),
+                            style:
+                                TextStyle(fontSize: 14.sp, color: Colors.blue),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ));
   }
 }

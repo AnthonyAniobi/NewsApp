@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
-import 'package:hackernews/models/story.dart';
 import 'package:hackernews/screens/story/controllers/story_controller.dart';
 import 'package:hackernews/services/app_enums.dart';
 import 'package:hackernews/services/app_extensions.dart';

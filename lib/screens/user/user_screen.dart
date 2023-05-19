@@ -3,6 +3,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:hackernews/screens/user/controllers/user_controller.dart';
 import 'package:hackernews/services/app_extensions.dart';
+import 'package:hackernews/widgets/info_text.dart';
 import 'package:hackernews/widgets/shimmer_list_tile.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -53,16 +54,20 @@ class _UserScreenState extends State<UserScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 2.w),
-                      titleInfo(
-                          'Created',
-                          DateFormat('dd MMMM yyyy')
+                      InfoText(
+                          title: 'Created',
+                          message: DateFormat('dd MMMM yyyy')
                               .format(controller.user.value!.exactTime)),
                       SizedBox(height: 2.w),
-                      titleInfo('Delay',
-                          controller.user.value?.delay.toString() ?? ""),
+                      InfoText(
+                          title: 'Delay',
+                          message:
+                              controller.user.value?.delay.toString() ?? ""),
                       SizedBox(height: 2.w),
-                      titleInfo('Karma',
-                          controller.user.value?.karma.toString() ?? ""),
+                      InfoText(
+                          title: 'Karma',
+                          message:
+                              controller.user.value?.karma.toString() ?? ""),
                       SizedBox(height: 2.w),
                       RichText(
                           text: TextSpan(children: [
@@ -110,20 +115,6 @@ class _UserScreenState extends State<UserScreen> {
                   ),
                 )));
     });
-  }
-
-  Widget titleInfo(String title, String message) {
-    return RichText(
-        text: TextSpan(children: [
-      TextSpan(
-          text: '$title:  ',
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold)),
-      TextSpan(
-          text: message, style: TextStyle(fontSize: 16.sp, color: Colors.blue)),
-    ]));
   }
 
   Widget loadingScreen() {
