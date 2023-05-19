@@ -6,7 +6,7 @@ Hacker news application on
 
 
 ## How to Setup:
-1. Clone the repository from [Github repository](https://something)
+1. Clone the repository from [Github repository](https://github.com/AnthonyAniobi/NewsApp)
 2. Run `flutter pub get` in the terminal to install dependencies 
 
         You need flutter installed on your device to run this command
