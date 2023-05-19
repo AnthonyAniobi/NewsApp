@@ -14,8 +14,8 @@ class AppDrawerBackground extends StatefulWidget {
 
 class _AppDrawerBackgroundState extends State<AppDrawerBackground> {
   Future<bool> _willPop(BuildContext context) async {
-    return await AppDialog.yesOrNo(
-        "Warning ℹ️", "You are about to close application");
+    return await AppDialog.yesOrNo("Warning ℹ️",
+        "You are about to close application, are you sure you want to continue?");
   }
 
   @override
@@ -26,6 +26,7 @@ class _AppDrawerBackgroundState extends State<AppDrawerBackground> {
         menuScreenWidth: MediaQuery.of(context).size.width,
         moveMenuScreen: false,
         showShadow: true,
+        angle: 0,
         menuScreen: const AppMenu(),
         mainScreen: Column(
           children: [

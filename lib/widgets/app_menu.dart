@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
-import 'package:hackernews/homepage/homepage.dart';
+import 'package:hackernews/screens/homepage/homepage.dart';
+import 'package:hackernews/screens/story/story_screen.dart';
+import 'package:hackernews/services/app_utils.dart';
 
 class AppMenu extends StatelessWidget {
   const AppMenu({super.key});
@@ -37,8 +39,9 @@ class AppMenu extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            menuItem(context, "home", Icons.house, const Homepage()),
-            const Spacer(flex: 4),
+            menuItem(context, "Home", Icons.house, const Homepage()),
+            menuItem(context, "Stories", Icons.newspaper, const StoryScreen()),
+            const Spacer(flex: 8),
           ],
         ),
       ),
@@ -48,14 +51,19 @@ class AppMenu extends StatelessWidget {
   Widget menuItem(
       BuildContext context, String title, IconData icon, Widget page) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(
+        icon,
+        color: Colors.black,
+        size: 30,
+      ),
       title: Text(
         title,
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       onTap: () async {
         FocusManager.instance.primaryFocus?.unfocus();
-        Get.to(() => page);
+        AppUtils.navigatorKey.currentState!
+            .push(MaterialPageRoute(builder: (context) => page));
         ZoomDrawer.of(context)?.close();
       },
     );
