@@ -1,3 +1,4 @@
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
@@ -58,6 +59,7 @@ class _StoryScreenState extends State<StoryScreen> {
                     itemBuilder: (context, index) =>
                         const ShimmerListTile(hasImage: true))
                 : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
                         height: 6.h,
@@ -68,6 +70,7 @@ class _StoryScreenState extends State<StoryScreen> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 2.w),
                       Expanded(
                           child: ListView.builder(
                               itemCount:

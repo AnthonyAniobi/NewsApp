@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hackernews/screens/poll_opt/poll_opt.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -42,53 +44,59 @@ class _ItemTile extends StatelessWidget {
             blurRadius: 4,
           )
         ]),
-        child: Row(
-          children: [
-            Container(
-              height: double.maxFinite,
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Color.fromRGBO(0, 0, 0, 1), Colors.blue],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter)),
-              child: Icon(
-                Icons.bar_chart,
-                color: Colors.white,
-                size: 16.w,
-              ),
-            ),
-            SizedBox(width: 1.w),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(1.5.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    Text(
-                      poll.text,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 16.sp, fontWeight: FontWeight.w400),
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          DateFormat('dd-MMMM-yyyy').format(poll.exactTime),
-                          style: TextStyle(fontSize: 14.sp, color: Colors.blue),
-                        ),
-                      ],
-                    )
-                  ],
+        child: InkWell(
+          onTap: () {
+            Get.to(() => PollOptScreen(pollopt: poll));
+          },
+          child: Row(
+            children: [
+              Container(
+                height: double.maxFinite,
+                padding: EdgeInsets.symmetric(horizontal: 4.w),
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Color.fromRGBO(0, 0, 0, 1), Colors.blue],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter)),
+                child: Icon(
+                  Icons.pie_chart,
+                  color: Colors.white,
+                  size: 16.w,
                 ),
               ),
-            ),
-          ],
+              SizedBox(width: 1.w),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(1.5.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      Text(
+                        poll.text,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontWeight: FontWeight.w400),
+                      ),
+                      const Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            DateFormat('dd-MMMM-yyyy').format(poll.exactTime),
+                            style:
+                                TextStyle(fontSize: 14.sp, color: Colors.blue),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ));
   }
 }
